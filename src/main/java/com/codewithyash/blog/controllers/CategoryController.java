@@ -18,21 +18,23 @@ import com.codewithyash.blog.payloads.ApiResponse;
 import com.codewithyash.blog.payloads.CategoryDto;
 import com.codewithyash.blog.services.CategoryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
-
+    
     @PostMapping("/")
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto){
         CategoryDto createdCategory=this.categoryService.createCategory(categoryDto);
         return new ResponseEntity<CategoryDto>(createdCategory,HttpStatus.CREATED);
     }
 
     @PutMapping("/{categoryId}")
-    public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto ,@PathVariable("categoryId") Integer categorId){
+    public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto categoryDto ,@PathVariable("categoryId") Integer categorId){
         CategoryDto updatedCategory=this.categoryService.updateCategoryDto(categoryDto, categorId);
         return new ResponseEntity<CategoryDto>(updatedCategory,HttpStatus.OK);
     }
