@@ -2,8 +2,8 @@ package com.codewithyash.blog.services;
 
 import java.util.List;
 
-import com.codewithyash.blog.entities.Post;
 import com.codewithyash.blog.payloads.PostDto;
+import com.codewithyash.blog.payloads.PostResponse;
 
 public interface PostService {
     
@@ -17,7 +17,7 @@ public interface PostService {
     void deletePost(Integer postId);
 
     //get all posts
-    List<PostDto>getAllPosts(Integer pageNumber,Integer pageSize);
+    PostResponse getAllPosts(Integer pageNumber,Integer pageSize,String sortBy,String sortDir);
 
     //get post by id
     PostDto getPostById(Integer postId);
